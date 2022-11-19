@@ -20,9 +20,9 @@ const useAnimationStyles = (fromStyles, toStyles, shouldAnimate, durations, timi
     return Object.keys(fromStyles)
       .filter((style) => style !== 'transition')
       .reduce((acc, key, i) => {
-        const duration = `${durations[i]}s` || '0.5s';
-        const timingFunction = timingFunctions[i] || 'ease-in-out';
-        const delay = `${delays[i]}s` || '0s';
+        const duration = `${durations?.[i] || 0.5}s`;
+        const timingFunction = timingFunctions?.[i] || 'ease-in-out';
+        const delay = `${delays?.[i] || 0}s`;
         return `${acc ? `${acc}, ` : ''}${key} ${duration} ${timingFunction} ${delay}`;
       }, '');
   }, [durations, timingFunctions, delays, fromStyles]);
